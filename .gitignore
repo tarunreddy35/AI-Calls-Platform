@@ -1,0 +1,47 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependencies
+node_modules
+service/node_modules
+
+# Build outputs
+dist
+dist-ssr
+service/dist
+build
+*.local
+
+# Environment variables
+.env
+service/.env
+
+# Vite
+.vite/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Demo call data (audio files and metadata)
+*.opus
+*_metadata.json
+
+# OS files
+Thumbs.db
+
+# TypeScript
+*.tsbuildinfo
