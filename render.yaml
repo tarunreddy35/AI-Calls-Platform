@@ -1,0 +1,45 @@
+services:
+  # Backend API Service
+  - type: web
+    name: ai-calls-platform-backend
+    runtime: node
+    env: node
+    region: oregon
+    plan: free
+    branch: main
+    buildCommand: cd service && npm install && npm run build
+    startCommand: cd service && node dist/index.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: GEMINI_API_KEY
+        sync: false
+    disk:
+      name: demo-calls-disk
+      mountPath: /opt/render/project/src/demo_calls
+      sizeGB: 1
+
+  # Frontend Static Site
+  - type: web
+    name: ai-calls-platform-frontend
+    runtime: static
+    env: static
+    region: oregon
+    plan: free
+    branch: main
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=3600
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        value: https://ai-calls-platform-backend.onrender.com

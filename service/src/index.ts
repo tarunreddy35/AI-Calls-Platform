@@ -8,7 +8,7 @@ import { AIService } from './aiService.js';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = parseInt(process.env.PORT || '3000', 10);
 
 // Initialize services
 const callService = new CallService();
@@ -116,8 +116,8 @@ app.post('/api/calls/analyze/batch', async (req: Request, res: Response) => {
 });
 
 // Start server
-app.listen(PORT, () => {
-  console.log(`🚀 Server is running on http://localhost:${PORT}`);
-  console.log(`📡 API endpoints available at http://localhost:${PORT}/api`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Server is running on http://0.0.0.0:${PORT}`);
+  console.log(`📡 API endpoints available at http://0.0.0.0:${PORT}/api`);
   console.log(`🤖 AI Service: ${aiService.isConfigured() ? 'Configured ✓' : 'Not configured (set GEMINI_API_KEY in .env)'}`);
 });
