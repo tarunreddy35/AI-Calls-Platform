@@ -36,10 +36,6 @@ service/.env
 *.sln
 *.sw?
 
-# Demo call data (audio files and metadata)
-*.opus
-*_metadata.json
-
 # OS files
 Thumbs.db
 
