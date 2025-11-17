@@ -18,6 +18,21 @@ const aiService = new AIService(process.env.GEMINI_API_KEY);
 app.use(cors());
 app.use(express.json());
 
+// Root endpoint
+app.get('/', (_req: Request, res: Response) => {
+  res.json({
+    name: 'AI Calls Platform API',
+    version: '1.0.0',
+    status: 'running',
+    endpoints: {
+      health: '/api/health',
+      calls: '/api/calls',
+      stats: '/api/calls/stats',
+      analyze: '/api/calls/:recordingId/analyze'
+    }
+  });
+});
+
 // Health check endpoint
 app.get('/api/health', (_req: Request, res: Response) => {
   res.json({ 
